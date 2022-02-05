@@ -6,9 +6,12 @@ using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Microsoft.Extensions.Logging;
+using Microsoft.OpenApi.Models;
 using System;
 using System.Collections.Generic;
+using System.IO;
 using System.Linq;
+using System.Reflection;
 using System.Threading.Tasks;
 
 namespace course.api
@@ -26,6 +29,29 @@ namespace course.api
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllers();
+            services.AddSwaggerGen(c => {
+                var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
+                var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
+                c.IncludeXmlComments(xmlPath);
+            });
+            //services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
+            //{
+            //    Version = "v1",
+            //    Title = "Course API",
+            //    Description = "An ASP.NET Core Web API for managing ToDo items",
+            //    TermsOfService = new Uri("https://example.com/terms"),
+            //    Contact = new OpenApiContact
+            //    {
+            //        Name = "Example Contact",
+            //        Url = new Uri("https://example.com/contact")
+            //    },
+            //    License = new OpenApiLicense
+            //    {
+            //        Name = "Example License",
+            //        Url = new Uri("https://example.com/license")
+            //    }
+
+            //}));
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -45,6 +71,13 @@ namespace course.api
             app.UseEndpoints(endpoints =>
             {
                 endpoints.MapControllers();
+            });
+
+            app.UseSwagger();
+            app.UseSwaggerUI(c =>
+            {
+                c.SwaggerEndpoint("/swagger/v1/swagger.json", "API Curso");
+                c.RoutePrefix = String.Empty;
             });
         }
     }
