@@ -28,7 +28,10 @@ namespace course.api
         // This method gets called by the runtime. Use this method to add services to the container.
         public void ConfigureServices(IServiceCollection services)
         {
-            services.AddControllers();
+            services.AddControllers().ConfigureApiBehaviorOptions(c => {
+                c.SuppressModelStateInvalidFilter = true;
+            });
+
             services.AddSwaggerGen(c => {
                 var xmlFile = $"{Assembly.GetEntryAssembly().GetName().Name}.xml";
                 var xmlPath = Path.Combine(AppContext.BaseDirectory, xmlFile);
