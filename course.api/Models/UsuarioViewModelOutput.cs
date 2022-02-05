@@ -1,6 +1,6 @@
-﻿namespace course.api.Controllers
+﻿namespace course.api.Models
 {
-    internal class UsuarioViewModelOutput
+    public class UsuarioViewModelOutput
     {
         public int Codigo { get; set; }
         public string Login { get; set; }
