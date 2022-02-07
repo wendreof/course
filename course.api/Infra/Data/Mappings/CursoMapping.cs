@@ -1,0 +1,18 @@
+﻿using course.api.Business.Entities;
+using Microsoft.EntityFrameworkCore;
+using Microsoft.EntityFrameworkCore.Metadata.Builders;
+
+namespace course.api.Infra.Data.Mappings
+{
+    public class CursoMapping : IEntityTypeConfiguration<Curso>
+    {
+        public void Configure(EntityTypeBuilder<Curso> builder)
+        {
+            builder.ToTable("TB_CURSO");
+            builder.HasKey(key => key.Codigo);
+            builder.Property(p => p.Codigo).ValueGeneratedOnAdd();
+            builder.Property(p => p.Nome);
+            builder.Property(p => p.Descricao);
+        }
+    }
+}
