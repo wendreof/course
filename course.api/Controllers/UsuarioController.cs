@@ -13,6 +13,7 @@ using System.IdentityModel.Tokens.Jwt;
 using System.Linq;
 using System.Security.Claims;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace course.api.Controllers
 {
@@ -83,6 +84,13 @@ namespace course.api.Controllers
             optionsBuilder.UseSqlite("Data Source=cursos.db");
 
             CursoDbContext cursoDbContext = new CursoDbContext(optionsBuilder.Options);
+
+            var pendingMigrations = cursoDbContext.Database.GetPendingMigrations();
+
+            if (pendingMigrations.Count() > 0)
+            {
+                cursoDbContext.Database.MigrateAsync();
+            }
 
             var usuario = new Usuario
             {
