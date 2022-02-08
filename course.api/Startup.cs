@@ -1,3 +1,5 @@
+using course.api.Business.Repos;
+using course.api.Infra.Data.Repos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
@@ -80,6 +82,8 @@ namespace course.api
                     ValidateAudience = false
                 };
             });
+
+            services.AddScoped<IUsuarioRepository, UsuarioRepository>();
            
             //services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
             //{

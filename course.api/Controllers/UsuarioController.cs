@@ -1,5 +1,6 @@
 ﻿
 using course.api.Business.Entities;
+using course.api.Business.Repos;
 using course.api.Filters;
 using course.api.Infra;
 using course.api.Models;
@@ -14,6 +15,7 @@ using System.Linq;
 using System.Security.Claims;
 using System.Text;
 using System.Threading.Tasks;
+using course.api.Infra.Data.Repos;
 
 namespace course.api.Controllers
 {
@@ -21,6 +23,9 @@ namespace course.api.Controllers
     [ApiController]
     public class UsuarioController : ControllerBase
     {
+        private object usuarioViewModelOutput;
+        IUsuarioRepository _usuarioRepository;
+
         /// <summary>
         /// Esse endpoint permite autenticar o usuário
         /// </summary>
@@ -100,6 +105,7 @@ namespace course.api.Controllers
             };
             cursoDbContext.Usuario.Add(usuario);
             cursoDbContext.SaveChanges();
+            _usuarioRepository.Add(usuario);
 
             return Created("", registroViewModelInput);
         }
