@@ -1,8 +1,11 @@
 using course.api.Business.Repos;
+using course.api.Configs;
+using course.api.Infra;
 using course.api.Infra.Data.Repos;
 using Microsoft.AspNetCore.Authentication.JwtBearer;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
+using Microsoft.EntityFrameworkCore;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
@@ -83,7 +86,13 @@ namespace course.api
                 };
             });
 
+            services.AddDbContext<CursoDbContext>(options =>
+            {
+                options.UseSqlite(Configuration.GetConnectionString("DefaultConnection"));
+            });
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
+            services.AddScoped<ICursoRepository, CursoRepository>();
+            services.AddScoped<IAuthenticationService, JwtService>();
            
             //services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
             //{
