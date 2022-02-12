@@ -1,4 +1,6 @@
-﻿namespace curso.mvc.web.Models
+﻿using System.ComponentModel.DataAnnotations;
+
+namespace curso.mvc.web.Models
 {
     public class ListarCursoViewModelOutput
     {
