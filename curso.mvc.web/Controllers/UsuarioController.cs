@@ -1,46 +1,45 @@
 ﻿using curso.mvc.web.Models;
+using curso.mvc.web.Services;
 using Microsoft.AspNetCore.Mvc;
 using Newtonsoft.Json;
+using Refit;
 using System;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 
 namespace curso.mvc.web.Controllers
 {
     public class UsuarioController : Controller
     {
+        private readonly IUsuarioService _service;
+        public UsuarioController(IUsuarioService service)
+        {
+            _service = service;
+        }
+
         public IActionResult Cadastrar()
         {
             return View();
         }
 
         [HttpPost]
-        public IActionResult Cadastrar(RegistrarUsuarioViewModelInput input)
+        public async Task<IActionResult> Cadastrar(RegistrarUsuarioViewModelInput input)
         {
-            var clientHandler = new HttpClientHandler
+            try
             {
-                ServerCertificateCustomValidationCallback = (sender, cert, chain, sslPolicyErrors) => { return true; }
-            };
+               var retorno = await  _service.Registrar(input);
 
-            var json = JsonConvert.SerializeObject(input);
-            var content = new StringContent(json, Encoding.UTF8, mediaType: "application/json");
-            var httpClient = new HttpClient(clientHandler)
-            {
-                BaseAddress = new Uri("https://localhost:5001/")
-                
-            };
-
-            var httpPost = httpClient.PostAsync("api/v1/usuario/registrar", content).GetAwaiter().GetResult();
-
-            if(httpPost.StatusCode == System.Net.HttpStatusCode.Created)
-            {
-                ModelState.AddModelError("", "Dados cadastrados com sucesso!");
-            } else
-            {
-                ModelState.AddModelError("", "Erro ao cadastrar dados!");
+                ModelState.AddModelError("", $"Cadastro realizado com sucesso para: {retorno.Login}");
             }
-
-
+            catch (ApiException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception ex )
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
             return View();
         }
 
