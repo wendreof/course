@@ -1,5 +1,6 @@
 ﻿using curso.mvc.web.Models;
 using Refit;
+using System.Collections.Generic;
 using System.Threading.Tasks;
 
 namespace curso.mvc.web.Services
@@ -11,6 +12,7 @@ namespace curso.mvc.web.Services
         Task<RegistrarCursoViewModelOutput> Registrar(RegistrarCursoViewModelInput input);
 
         [Get("/api/v1/cursos")]
-        Task<ListarCursoViewModelOutput> Logar(ListarCursoViewModelOutput output);
+        [Headers("Authorization: Bearer")]
+        Task<IList<ListarCursoViewModelOutput>> Listar();
     }
 }
