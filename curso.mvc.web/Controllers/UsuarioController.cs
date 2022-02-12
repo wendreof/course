@@ -49,8 +49,22 @@ namespace curso.mvc.web.Controllers
         }
 
         [HttpPost]
-        public IActionResult Logar(LoginViewModelInput input)
+        public async Task<IActionResult> LogarAsync(LoginViewModelInput input)
         {
+            try
+            {
+                var retorno = await _service.Logar(input);
+
+                ModelState.AddModelError("", $"Usuário autenticado com sucesso. Token: {retorno.Token}");
+            }
+            catch (ApiException ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
+            catch (Exception ex)
+            {
+                ModelState.AddModelError("", ex.Message);
+            }
             return View();
         }
     }
