@@ -6,6 +6,10 @@ namespace course.api.Infra.Data.Mappings
 {
     public class CursoMapping : IEntityTypeConfiguration<Curso>
     {
+        /// <summary>
+        /// DB configuration
+        /// </summary>
+        /// <param name="builder"></param>
         public void Configure(EntityTypeBuilder<Curso> builder)
         {
             builder.ToTable("TB_CURSO");

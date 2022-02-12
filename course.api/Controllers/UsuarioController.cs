@@ -44,11 +44,6 @@ namespace course.api.Controllers
                 return BadRequest("Usuário/Senha inválidos.");
             }
 
-            //if (usuario.Senha != loginViewModelInput.Senha.GerarSenhaCriptografada())
-            //{
-            //    return BadRequest("Houve um erro ao tentar acessar.");
-            //}
-
             var usuarioViewModelOutput = new UsuarioViewModelOutput()
             {
                 Codigo = usuario.Codigo,

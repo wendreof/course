@@ -98,7 +98,7 @@ namespace course.api
             //{
             //    Version = "v1",
             //    Title = "Course API",
-            //    Description = "An ASP.NET Core Web API for managing ToDo items",
+            //    Description = "An ASP.NET Core Web API for managing items",
             //    TermsOfService = new Uri("https://example.com/terms"),
             //    Contact = new OpenApiContact
             //    {
