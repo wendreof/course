@@ -1,16 +1,14 @@
+using curso.mvc.web.Handlers;
 using curso.mvc.web.Services;
+using Microsoft.AspNetCore.Authentication.Cookies;
 using Microsoft.AspNetCore.Builder;
 using Microsoft.AspNetCore.Hosting;
-using Microsoft.AspNetCore.HttpsPolicy;
 using Microsoft.Extensions.Configuration;
 using Microsoft.Extensions.DependencyInjection;
 using Microsoft.Extensions.Hosting;
 using Refit;
 using System;
-using System.Collections.Generic;
-using System.Linq;
 using System.Net.Http;
-using System.Threading.Tasks;
 
 namespace curso.mvc.web
 {
@@ -27,6 +25,7 @@ namespace curso.mvc.web
         public void ConfigureServices(IServiceCollection services)
         {
             services.AddControllersWithViews();
+            services.AddHttpContextAccessor();
 
             var clientHandler = new HttpClientHandler
             {
@@ -38,10 +37,16 @@ namespace curso.mvc.web
                 c.BaseAddress = new Uri(Configuration.GetValue<string>("EndpoinCurso"));
                 }).ConfigurePrimaryHttpMessageHandler(c => clientHandler);
 
+            services.AddTransient<BearerTokenMessageHandler>();
+
             services.AddRefitClient<ICursoService>()
+                .AddHttpMessageHandler<BearerTokenMessageHandler>()
                 .ConfigureHttpClient(c => {
                     c.BaseAddress = new Uri(Configuration.GetValue<string>("EndpoinCurso"));
                 }).ConfigurePrimaryHttpMessageHandler(c => clientHandler);
+
+            services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
+            .AddCookie();
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.
@@ -61,7 +66,7 @@ namespace curso.mvc.web
             app.UseStaticFiles();
 
             app.UseRouting();
-
+            app.UseAuthentication();
             app.UseAuthorization();
 
             app.UseEndpoints(endpoints =>

@@ -4,8 +4,8 @@ namespace curso.mvc.web.Models
 {
     public class RegistrarCursoViewModelInput
     {
-        [Required(ErrorMessage = "O login é obrigatório")]
-        public string Login { get; set; }
+        [Required(ErrorMessage = "O nome é obrigatório")]
+        public string Nome { get; set; }
 
 
         [Required(ErrorMessage = "A descrição é obrigatória")]
