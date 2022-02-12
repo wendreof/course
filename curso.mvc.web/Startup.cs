@@ -46,7 +46,11 @@ namespace curso.mvc.web
                 }).ConfigurePrimaryHttpMessageHandler(c => clientHandler);
 
             services.AddAuthentication(CookieAuthenticationDefaults.AuthenticationScheme)
-            .AddCookie();
+            .AddCookie(options =>
+            {
+                options.LoginPath = "/Usuario/Logar";
+                options.AccessDeniedPath = "/Usuario/Logar";
+            });
         }
 
         // This method gets called by the runtime. Use this method to configure the HTTP request pipeline.

@@ -89,5 +89,18 @@ namespace curso.mvc.web.Controllers
             }
             return View();
         }
+
+        public IActionResult Logout()
+        {
+            return View();
+        }
+
+
+        [HttpPost]
+        public async Task<IActionResult> Logout2()
+        {
+            await HttpContext.SignOutAsync(CookieAuthenticationDefaults.AuthenticationScheme);
+            return RedirectToAction($"{nameof(Logar)}");
+        }
     }
 }
