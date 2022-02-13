@@ -24,6 +24,12 @@ jobs:
       - name: Test
         #run: dotnet test --no-build --no-restore --verbosity normal tests/curso.api.tests/curso.api.tests.csproj
         run: dotnet test --collect:"XPlat Code Coverage"
+      
+      - name: Upload WebApp1 Build Artifact
+        uses: actions/upload-artifact@v2
+        with:
+          name: TestResults
+          path: /home/runner/work/course/course/tests/curso.api.tests/TestResults/
 
   publish:
     name: Publish apps
