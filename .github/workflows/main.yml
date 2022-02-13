@@ -47,10 +47,10 @@ jobs:
       uses: actions/upload-artifact@v2
       with:
         name: WebApi
-        path: /home/runner/work/course/course/course.api/bin/Debug/netcoreapp3.1/publish/
+        path: /home/runner/work/course/course.api/bin/Debug/netcoreapp3.1/publish/
         
     - name: Upload WebApp2 Build Artifact
       uses: actions/upload-artifact@v2
       with:
         name: Front
-        path: /home/runner/work/course/course/curso.mvc.web/bin/Debug/netcoreapp3.1/publish/
+        path: /home/runner/work/course/curso.mvc.web/bin/Debug/netcoreapp3.1/publish/
