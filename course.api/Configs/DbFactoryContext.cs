@@ -4,8 +4,14 @@ using Microsoft.EntityFrameworkCore.Design;
 
 namespace course.api.Configs
 {
+    /// <summary>
+    /// class DbFactoryContext 
+    /// </summary>
     public class DbFactoryContext : IDesignTimeDbContextFactory<CursoDbContext>
     {
+        /// <summary>
+        /// Method CreateDbContext 
+        /// </summary>
         public CursoDbContext CreateDbContext(string[] args)
         {
             var optionsBuilder = new DbContextOptionsBuilder<CursoDbContext>();

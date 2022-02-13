@@ -10,6 +10,9 @@ using Swashbuckle.AspNetCore.Annotations;
 
 namespace course.api.Controllers
 {
+    /// <summary>
+    /// Class UsuarioController
+    /// </summary>
     [Route("api/v1/[controller]")]
     [ApiController]
     public class UsuarioController : ControllerBase
@@ -17,6 +20,9 @@ namespace course.api.Controllers
         private readonly IUsuarioRepository _usuarioRepository;
         private readonly IAuthenticationService _auth;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public UsuarioController(IUsuarioRepository usuarioRepository,
             IAuthenticationService auth)
         {
@@ -63,7 +69,7 @@ namespace course.api.Controllers
         /// <summary>
         /// Esse endpoint permite autenticar o usuário
         /// </summary>
-        /// <param name="registroViewModel">View model do login</param>
+        /// <param name="registroViewModelInput">View model do login</param>
         /// <returns>Retorna dados do usuário e token em caso de sucesso</returns> 
         [HttpPost]
         [Route("registrar")]

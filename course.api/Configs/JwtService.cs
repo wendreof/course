@@ -8,15 +8,24 @@ using System.Text;
 
 namespace course.api.Configs
 {
+    /// <summary>
+    /// Model JwtService
+    /// </summary>
     public class JwtService : IAuthenticationService
     {
         private readonly IConfiguration _configuration;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public JwtService(IConfiguration configuration)
         {
             _configuration = configuration;
         }
 
+        /// <summary>
+        /// Generates new Access Token
+        /// </summary>
         public string GerarToken(UsuarioViewModelOutput usuarioViewModelOutput)
         {
             var secret = Encoding.ASCII.GetBytes(_configuration.GetSection("JwtConfigurations:Secret").Value);

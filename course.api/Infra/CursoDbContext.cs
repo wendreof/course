@@ -4,13 +4,22 @@ using Microsoft.EntityFrameworkCore;
 
 namespace course.api.Infra
 {
+    /// <summary>
+    /// CursoDbContext - DB Configuration
+    /// </summary>
     public class CursoDbContext : DbContext
     {
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CursoDbContext(DbContextOptions<CursoDbContext> options) : base(options)
         {
             Database.EnsureCreated();
         }
 
+        /// <summary>
+        /// OnModelCreating
+        /// </summary>
         protected override void OnModelCreating(ModelBuilder modelBuilder)
         {
             modelBuilder.ApplyConfiguration(new CursoMapping());
@@ -18,7 +27,14 @@ namespace course.api.Infra
             base.OnModelCreating(modelBuilder);
         }
 
+        /// <summary>
+        /// Prop Usuario
+        /// </summary>
         public DbSet<Usuario> Usuario { get; set; }
+
+        /// <summary>
+        /// Prop Curso
+        /// </summary>
         public DbSet<Curso> Curso { get; set; }
     }
 }

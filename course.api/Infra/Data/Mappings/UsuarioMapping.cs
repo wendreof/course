@@ -4,8 +4,14 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace course.api.Infra.Data.Mappings
 {
+    /// <summary>
+    /// Class UsuarioMapping
+    /// </summary>
     public class UsuarioMapping : IEntityTypeConfiguration<Usuario>
     {
+        /// <summary>
+        /// TB_USUARIO configs
+        /// </summary>
         public void Configure(EntityTypeBuilder<Usuario> builder)
         {
             builder.ToTable("TB_USUARIO");

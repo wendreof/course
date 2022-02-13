@@ -5,8 +5,14 @@ using System.Linq;
 
 namespace course.api.Filters
 {
+    /// <summary>
+    /// Class ValidacaoModelStateCustomizado
+    /// </summary>
     public class ValidacaoModelStateCustomizado : ActionFilterAttribute
     {
+        /// <summary>
+        /// Validates ModelState
+        /// </summary>
         public override void OnActionExecuting(ActionExecutingContext context)
         {
             if (!context.ModelState.IsValid)

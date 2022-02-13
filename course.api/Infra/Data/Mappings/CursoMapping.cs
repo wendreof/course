@@ -4,6 +4,9 @@ using Microsoft.EntityFrameworkCore.Metadata.Builders;
 
 namespace course.api.Infra.Data.Mappings
 {
+    /// <summary>
+    /// class CursoMapping 
+    /// </summary>
     public class CursoMapping : IEntityTypeConfiguration<Curso>
     {
         /// <summary>

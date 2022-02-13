@@ -10,6 +10,9 @@ using System.Threading.Tasks;
 
 namespace course.api.Controllers
 {
+    /// <summary>
+    /// CursoController
+    /// </summary>
     [Route("api/v1/cursos")]
     [ApiController]
     [Authorize]
@@ -17,6 +20,9 @@ namespace course.api.Controllers
     {
         private readonly ICursoRepository _cursoRepository;
 
+        /// <summary>
+        /// Constructor
+        /// </summary>
         public CursoController(ICursoRepository cursoRepository)
         {
             _cursoRepository = cursoRepository;
@@ -31,7 +37,7 @@ namespace course.api.Controllers
         [SwaggerResponse(statusCode: 401, description: "Não autorizado")]
         [HttpPost]
         [Route("")]
-        public async Task<IActionResult> Post(CursoViewModelInput cursoViewModelInput)
+        public IActionResult Post(CursoViewModelInput cursoViewModelInput)
         {
             Curso curso = new Curso
             {
@@ -52,7 +58,7 @@ namespace course.api.Controllers
         [SwaggerResponse(statusCode: 401, description: "Não autorizado")]
         [HttpGet]
         [Route("")]
-        public async Task<IActionResult> Get()
+        public IActionResult Get()
         {
             var codigoUsuario = int.Parse(User.FindFirst(c => c.Type == ClaimTypes.NameIdentifier)?.Value);
 
