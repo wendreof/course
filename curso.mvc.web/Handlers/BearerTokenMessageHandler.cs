@@ -8,7 +8,7 @@ using System.Threading.Tasks;
 
 namespace curso.mvc.web.Handlers
 {
-    public class BearerTokenMessageHandler: DelegatingHandler
+    public class BearerTokenMessageHandler : DelegatingHandler
     {
         private readonly IHttpContextAccessor _httpContextAccessor;
 

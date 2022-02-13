@@ -39,7 +39,7 @@ namespace course.api.Controllers
         {
             Usuario usuario = _usuarioRepository.ObterUsuario(loginViewModelInput.Login);
 
-            if(usuario == null)
+            if (usuario == null)
             {
                 return BadRequest("Usuário/Senha inválidos.");
             }

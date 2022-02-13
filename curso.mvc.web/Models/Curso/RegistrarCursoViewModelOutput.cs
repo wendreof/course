@@ -1,6 +1,4 @@
-﻿using System.ComponentModel.DataAnnotations;
-
-namespace curso.mvc.web.Models
+﻿namespace curso.mvc.web.Models
 {
     public class RegistrarCursoViewModelOutput
     {

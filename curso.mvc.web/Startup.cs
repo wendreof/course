@@ -33,15 +33,17 @@ namespace curso.mvc.web
             };
 
             services.AddRefitClient<IUsuarioService>()
-                .ConfigureHttpClient(c => { 
-                c.BaseAddress = new Uri(Configuration.GetValue<string>("EndpoinCurso"));
+                .ConfigureHttpClient(c =>
+                {
+                    c.BaseAddress = new Uri(Configuration.GetValue<string>("EndpoinCurso"));
                 }).ConfigurePrimaryHttpMessageHandler(c => clientHandler);
 
             services.AddTransient<BearerTokenMessageHandler>();
 
             services.AddRefitClient<ICursoService>()
                 .AddHttpMessageHandler<BearerTokenMessageHandler>()
-                .ConfigureHttpClient(c => {
+                .ConfigureHttpClient(c =>
+                {
                     c.BaseAddress = new Uri(Configuration.GetValue<string>("EndpoinCurso"));
                 }).ConfigurePrimaryHttpMessageHandler(c => clientHandler);
 

@@ -4,7 +4,7 @@ using Microsoft.EntityFrameworkCore;
 
 namespace course.api.Infra
 {
-    public class CursoDbContext: DbContext
+    public class CursoDbContext : DbContext
     {
         public CursoDbContext(DbContextOptions<CursoDbContext> options) : base(options)
         {

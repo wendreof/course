@@ -74,7 +74,8 @@ namespace course.api
                 auth.DefaultAuthenticateScheme = JwtBearerDefaults.AuthenticationScheme;
                 auth.DefaultChallengeScheme = JwtBearerDefaults.AuthenticationScheme;
             })
-            .AddJwtBearer(jwt => {
+            .AddJwtBearer(jwt =>
+            {
                 jwt.RequireHttpsMetadata = false;
                 jwt.SaveToken = true;
                 jwt.TokenValidationParameters = new TokenValidationParameters
@@ -93,7 +94,7 @@ namespace course.api
             services.AddScoped<IUsuarioRepository, UsuarioRepository>();
             services.AddScoped<ICursoRepository, CursoRepository>();
             services.AddScoped<IAuthenticationService, JwtService>();
-           
+
             //services.AddSwaggerGen(c => c.SwaggerDoc("v1", new OpenApiInfo
             //{
             //    Version = "v1",

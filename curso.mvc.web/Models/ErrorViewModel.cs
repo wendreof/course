@@ -1,5 +1,3 @@
-using System;
-
 namespace curso.mvc.web.Models
 {
     public class ErrorViewModel
