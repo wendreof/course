@@ -22,7 +22,8 @@ jobs:
       - name: Build
         run: dotnet build --configuration Release --no-restore
       - name: Test
-        run: dotnet test --no-build --no-restore --verbosity normal tests/curso.api.tests/curso.api.tests.csproj
+        #run: dotnet test --no-build --no-restore --verbosity normal tests/curso.api.tests/curso.api.tests.csproj
+        run: dotnet test --collect:"XPlat Code Coverage"
 
   publish:
     name: Publish apps
