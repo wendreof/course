@@ -11,7 +11,6 @@ namespace course.api.Models.Usuarios
         /// Prop Login
         /// </summary>
         [Required(ErrorMessage = "O login é obrigatório")]
-        [StringLength(10)]
         public string Login { get; set; }
 
         /// <summary>
@@ -19,13 +18,13 @@ namespace course.api.Models.Usuarios
         /// </summary>
         [Required(ErrorMessage = "O E-mail é obrigatório")]
         [StringLength(50)]
+        [EmailAddress(ErrorMessage = "E-mail informado é inválido")]
         public string Email { get; set; }
 
         /// <summary>
         /// Prop Senha
         /// </summary>
         [Required(ErrorMessage = "A senha é obrigatória")]
-        [StringLength(8)]
         public string Senha { get; set; }
     }
 }

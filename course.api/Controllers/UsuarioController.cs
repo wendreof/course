@@ -75,8 +75,15 @@ namespace course.api.Controllers
         [HttpPost]
         [Route("registrar")]
         [ValidacaoModelStateCustomizado]
-        public IActionResult Registrar(RegistroViewModelInput registroViewModelInput)
+        public async Task<IActionResult> Registrar(RegistroViewModelInput registroViewModelInput)
         {
+            var usuarioExiste = await _usuarioRepository.ObterUsuario(registroViewModelInput.Login);
+
+            if(usuarioExiste != null)
+            {
+                return BadRequest("Usuário já cadastrado!");
+            }
+
             var usuario = new Usuario
             {
                 Login = registroViewModelInput.Login,
