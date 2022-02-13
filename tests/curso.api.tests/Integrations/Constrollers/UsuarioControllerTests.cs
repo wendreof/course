@@ -1,16 +1,16 @@
-﻿using course.api.Models.Usuarios;
+﻿using course.api;
+using course.api.Models.Usuarios;
+using curso.mvc.web.Models.Usuario;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System.Net.Http;
-using Xunit;
 using System.Text;
-using course.api;
-using curso.mvc.web.Models.Usuario;
+using Xunit;
 using Xunit.Abstractions;
 
 namespace curso.api.tests.Integrations.Constrollers
 {
-    public class UsuarioControllerTests: IClassFixture<WebApplicationFactory<Startup>>
+    public class UsuarioControllerTests : IClassFixture<WebApplicationFactory<Startup>>
     {
         private readonly WebApplicationFactory<Startup> _factory;
         private readonly HttpClient _httpClient;
@@ -54,7 +54,7 @@ namespace curso.api.tests.Integrations.Constrollers
                 Senha = "wndro"
             };
 
-            var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json" );
+            var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
 
             //Act
             var request = _httpClient.PostAsync("api/v1/usuario/logar", content).GetAwaiter().GetResult();
