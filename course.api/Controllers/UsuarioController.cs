@@ -7,6 +7,7 @@ using course.api.Models;
 using course.api.Models.Usuarios;
 using Microsoft.AspNetCore.Mvc;
 using Swashbuckle.AspNetCore.Annotations;
+using System.Threading.Tasks;
 
 namespace course.api.Controllers
 {
@@ -41,9 +42,9 @@ namespace course.api.Controllers
         [HttpPost]
         [Route("logar")]
         [ValidacaoModelStateCustomizado]
-        public IActionResult Logar(LoginViewModelInput loginViewModelInput)
+        public async Task<IActionResult> Logar(LoginViewModelInput loginViewModelInput)
         {
-            Usuario usuario = _usuarioRepository.ObterUsuario(loginViewModelInput.Login);
+            Usuario usuario = await _usuarioRepository.ObterUsuario(loginViewModelInput.Login);
 
             if (usuario == null)
             {

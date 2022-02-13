@@ -1,6 +1,8 @@
 ﻿using course.api.Business.Entities;
 using course.api.Business.Repos;
+using Microsoft.EntityFrameworkCore;
 using System.Linq;
+using System.Threading.Tasks;
 
 namespace course.api.Infra.Data.Repos
 {
@@ -38,9 +40,9 @@ namespace course.api.Infra.Data.Repos
         /// <summary>
         /// Returns Usuario
         /// </summary>
-        public Usuario ObterUsuario(string login)
+        public async Task<Usuario> ObterUsuario(string login)
         {
-            return _cursoDbContext.Usuario.FirstOrDefault(u => u.Login == login);
+            return await _cursoDbContext.Usuario.FirstOrDefaultAsync(u => u.Login == login);
         }
     }
 }

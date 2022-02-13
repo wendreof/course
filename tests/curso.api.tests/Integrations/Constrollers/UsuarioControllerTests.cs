@@ -5,6 +5,7 @@ using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
 using System.Net.Http;
 using System.Text;
+using System.Threading.Tasks;
 using Xunit;
 using Xunit.Abstractions;
 
@@ -45,7 +46,7 @@ namespace curso.api.tests.Integrations.Constrollers
 
 
         [Fact]
-        public void LoginWithExistentUserShouldReturnOk()
+        public async Task LoginWithExistentUserShouldReturnOk()
         {
             //Arrange
             var loginViewModelInput = new LoginViewModelInput
@@ -57,9 +58,9 @@ namespace curso.api.tests.Integrations.Constrollers
             var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
 
             //Act
-            var request = _httpClient.PostAsync("api/v1/usuario/logar", content).GetAwaiter().GetResult();
+            var request = await _httpClient.PostAsync("api/v1/usuario/logar", content);
 
-            var loginViewModelOutput = JsonConvert.DeserializeObject<LoginViewModelOutput>(request.Content.ReadAsStringAsync().GetAwaiter().GetResult());
+            var loginViewModelOutput = JsonConvert.DeserializeObject<LoginViewModelOutput>(await request.Content.ReadAsStringAsync());
 
             //Assert
             _testOutputHelper.WriteLine($"Token: {loginViewModelOutput.Token}");
@@ -69,7 +70,7 @@ namespace curso.api.tests.Integrations.Constrollers
         }
 
         [Fact]
-        public void LoginWithInvalidUserShouldReturnBadRequest()
+        public async Task LoginWithInvalidUserShouldReturnBadRequest()
         {
             //Arrange
             var loginViewModelInput = new LoginViewModelInput
@@ -81,7 +82,7 @@ namespace curso.api.tests.Integrations.Constrollers
             var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
 
             //Act
-            var request = _httpClient.PostAsync("api/v1/usuario/logar", content).GetAwaiter().GetResult();
+            var request = await _httpClient.PostAsync("api/v1/usuario/logar", content);
 
             //Assert
             Assert.False(request.IsSuccessStatusCode);

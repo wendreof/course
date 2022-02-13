@@ -1,4 +1,5 @@
 ﻿using course.api.Business.Entities;
+using System.Threading.Tasks;
 
 namespace course.api.Business.Repos
 {
@@ -20,6 +21,6 @@ namespace course.api.Business.Repos
         /// <summary>
         /// Returns usuario
         /// </summary>
-        Usuario ObterUsuario(string login);
+        Task<Usuario> ObterUsuario(string login);
     }
 }
