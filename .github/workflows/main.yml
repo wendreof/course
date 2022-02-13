@@ -1,10 +1,10 @@
-name: dotnet package
+name: CI/CD
 
 on: [push]
 
 jobs:
   build_and_test:
-
+    name: Runs build and test
     runs-on: ubuntu-latest
     strategy:
       matrix:
@@ -25,6 +25,7 @@ jobs:
         run: dotnet test --no-restore --verbosity normal
 
   publish:
+    name: Publish apps
     runs-on: ubuntu-latest
     strategy:
       matrix:
