@@ -26,6 +26,7 @@ jobs:
 
   publish:
     name: Publish apps
+    needs: [build_and_test]
     runs-on: ubuntu-latest
     strategy:
       matrix:
