@@ -19,28 +19,19 @@ jobs:
           dotnet-version: ${{ matrix.dotnet-version }}
       - name: Install dependencies
         run: dotnet restore
-
-      - name: Restore dependencies
-        run: dotnet restore
+        
       - name: Build
         run: dotnet build --no-restore /p:ContinuousIntegrationBuild=true
-      - name: Test
+      - name: Run Test and Generate coverage report
         run: dotnet test --no-build --verbosity normal /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
       
-      - name: Codecov
-        uses: codecov/codecov-action@v1
-      # - name: Build
-      #   run: dotnet build --configuration Release --no-restore
-      # - name: Test
-      #   #run: dotnet test --no-build --no-restore --verbosity normal tests/curso.api.tests/curso.api.tests.csproj
-      #   # run: dotnet test --collect:"XPlat Code Coverage"
-      #   run: dotnet test --no-build /p:CollectCoverage=true /p:CoverletOutputFormat=opencover
-      
-      # - name: Upload TestResults XML
-      #   uses: actions/upload-artifact@v2
-      #   with:
-      #     name: TestResults
-      #     path: /home/runner/work/course/course/tests/curso.api.tests/TestResults/
+      - name: Upload coverage to Codecov
+        uses: codecov/codecov-action@v2
+        with:
+          fail_ci_if_error: true
+          flags: unittests
+          path_to_write_report: ./coverage/codecov_report.txt
+          verbose: true
 
   publish:
     name: Publish apps
