@@ -7,6 +7,19 @@
       "commands": [
         "reportgenerator"
       ]
+    },
+    "gitversion.tool": {
+      "version": "5.2.4",
+      "commands": [
+        "dotnet-gitversion"
+      ]
+    },
+    "dotnet-sonarscanner": {
+      "version": "5",
+      "commands": [
+        "dotnet-sonarscanner"
+      ]
     }
   }
+}
 }
