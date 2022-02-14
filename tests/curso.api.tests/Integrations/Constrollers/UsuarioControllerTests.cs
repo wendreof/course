@@ -31,7 +31,7 @@ namespace curso.api.tests.Integrations.Constrollers
         {
             //Arrange
             RegistroViewModelInput = new AutoFaker<RegistroViewModelInput>()
-                    .RuleFor(modelViewInput => modelViewInput.Email, faker => faker.Person.Email );
+                    .RuleFor(modelViewInput => modelViewInput.Email, faker => faker.Person.Email);
 
             // RegistroViewModelInput = new RegistroViewModelInput
             //{

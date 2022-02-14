@@ -79,7 +79,7 @@ namespace course.api.Controllers
         {
             var usuarioExiste = await _usuarioRepository.ObterUsuario(registroViewModelInput.Login);
 
-            if(usuarioExiste != null)
+            if (usuarioExiste != null)
             {
                 return BadRequest("Usuário já cadastrado!");
             }

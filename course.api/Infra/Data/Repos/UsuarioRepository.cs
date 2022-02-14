@@ -1,7 +1,6 @@
 ﻿using course.api.Business.Entities;
 using course.api.Business.Repos;
 using Microsoft.EntityFrameworkCore;
-using System.Linq;
 using System.Threading.Tasks;
 
 namespace course.api.Infra.Data.Repos
