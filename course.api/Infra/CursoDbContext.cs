@@ -14,7 +14,7 @@ namespace course.api.Infra
         /// </summary>
         public CursoDbContext(DbContextOptions<CursoDbContext> options) : base(options)
         {
-            Database.Migrate();
+            Database.EnsureCreated();
         }
 
         /// <summary>
