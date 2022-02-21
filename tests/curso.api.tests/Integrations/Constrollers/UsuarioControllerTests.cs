@@ -15,9 +15,10 @@ namespace curso.api.tests.Integrations.Constrollers
     public class UsuarioControllerTests : IClassFixture<WebApplicationFactory<Startup>>, IAsyncLifetime
     {
         private readonly WebApplicationFactory<Startup> _factory;
-        private readonly HttpClient _httpClient;
-        private readonly ITestOutputHelper _testOutputHelper;
+        protected readonly HttpClient _httpClient;
+        protected readonly ITestOutputHelper _testOutputHelper;
         protected RegistroViewModelInput RegistroViewModelInput;
+        protected LoginViewModelOutput LoginViewModelOutput;
 
         public UsuarioControllerTests(WebApplicationFactory<Startup> factory, ITestOutputHelper testOutputHelper)
         {
@@ -65,13 +66,13 @@ namespace curso.api.tests.Integrations.Constrollers
             //Act
             var request = await _httpClient.PostAsync("api/v1/usuario/logar", content);
 
-            var loginViewModelOutput = JsonConvert.DeserializeObject<LoginViewModelOutput>(await request.Content.ReadAsStringAsync());
+            LoginViewModelOutput = JsonConvert.DeserializeObject<LoginViewModelOutput>(await request.Content.ReadAsStringAsync());
 
             //Assert
-            _testOutputHelper.WriteLine($"Token: {loginViewModelOutput.Token}");
-            Assert.NotNull(loginViewModelOutput.Token);
+            _testOutputHelper.WriteLine($"{nameof(UsuarioControllerTests)}_{nameof(LoginWithExistentUserShouldReturnOk)} = {LoginViewModelOutput.Token}");
+            Assert.NotNull(LoginViewModelOutput.Token);
             Assert.True(request.IsSuccessStatusCode);
-            Assert.Equal(loginViewModelInput.Login, loginViewModelOutput.Usuario.Login);
+            Assert.Equal(loginViewModelInput.Login, LoginViewModelOutput.Usuario.Login);
         }
 
         [Fact]
@@ -96,6 +97,7 @@ namespace curso.api.tests.Integrations.Constrollers
         public async Task InitializeAsync()
         {
             await SignupWithNewValidUserShouldReturnOk();
+            await LoginWithExistentUserShouldReturnOk();
         }
 
         public async Task DisposeAsync()
