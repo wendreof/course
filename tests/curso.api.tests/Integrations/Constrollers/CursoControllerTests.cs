@@ -3,6 +3,7 @@ using course.api;
 using course.api.Models;
 using Microsoft.AspNetCore.Mvc.Testing;
 using Newtonsoft.Json;
+using System.Collections.Generic;
 using System.Net.Http;
 using System.Net.Http.Headers;
 using System.Text;
@@ -24,7 +25,7 @@ namespace curso.api.tests.Integrations.Constrollers
         public async Task RegisterNewCourseWithValidDataShouldReturnOk()
         {
             //Arrange
-            var cursoViewModelInput = new AutoFaker<CursoViewModelInput>()
+            var cursoViewModelInput = new AutoFaker<CursoViewModelInput>("pt_BR")
                     .RuleFor(modelViewInput => modelViewInput.Nome, faker => faker.Person.Email);
 
             var content = new StringContent(JsonConvert.SerializeObject(cursoViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
@@ -35,6 +36,40 @@ namespace curso.api.tests.Integrations.Constrollers
 
             //Assert
             Assert.True(request.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async Task GetCoursesFromOkUserShouldReturnOk()
+        {
+            //Arrange
+            await RegisterNewCourseWithValidDataShouldReturnOk();
+
+            //Act
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", LoginViewModelOutput.Token);
+            var request = await _httpClient.GetAsync("api/v1/cursos");
+
+            //Assert
+            //var cursos = JsonConvert.DeserializeObject<IList<CursoViewModelOutput>>(await request.Content.ReadAsStringAsync());
+            //_testOutputHelper.WriteLine($"return get cursos: {cursos}");
+
+            Assert.True(request.IsSuccessStatusCode);
+        }
+
+        [Fact]
+        public async Task GetCoursesFromWithoutTokenUserShouldReturnOk()
+        {
+            //Arrange
+            await RegisterNewCourseWithValidDataShouldReturnOk();
+
+            //Act
+            _httpClient.DefaultRequestHeaders.Authorization = new AuthenticationHeaderValue("Bearer", "LoginViewModelOutput.Token");
+            var request = await _httpClient.GetAsync("api/v1/cursos");
+
+            //Assert
+            //var cursos = JsonConvert.DeserializeObject<IList<CursoViewModelOutput>>(await request.Content.ReadAsStringAsync());
+            //_testOutputHelper.WriteLine($"return get cursos: {cursos}");
+
+            Assert.False(request.IsSuccessStatusCode);
         }
 
         [Fact]

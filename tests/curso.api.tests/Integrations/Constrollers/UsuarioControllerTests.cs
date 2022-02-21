@@ -31,7 +31,7 @@ namespace curso.api.tests.Integrations.Constrollers
         public async Task SignupWithNewValidUserShouldReturnOk()
         {
             //Arrange
-            RegistroViewModelInput = new AutoFaker<RegistroViewModelInput>()
+            RegistroViewModelInput = new AutoFaker<RegistroViewModelInput>("pt_BR")
                     .RuleFor(modelViewInput => modelViewInput.Email, faker => faker.Person.Email);
 
             // RegistroViewModelInput = new RegistroViewModelInput
