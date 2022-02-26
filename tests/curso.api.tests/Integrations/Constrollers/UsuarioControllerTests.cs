@@ -32,6 +32,7 @@ namespace curso.api.tests.Integrations.Constrollers
         {
             //Arrange
             RegistroViewModelInput = new AutoFaker<RegistroViewModelInput>("pt_BR")
+                    .RuleFor(modelViewInput => modelViewInput.Login, faker => faker.Person.UserName)
                     .RuleFor(modelViewInput => modelViewInput.Email, faker => faker.Person.Email);
 
             // RegistroViewModelInput = new RegistroViewModelInput

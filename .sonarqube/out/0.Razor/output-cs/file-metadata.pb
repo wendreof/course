@@ -1,0 +1,14 @@
+Ç
+wC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Curso\Cadastrar.cshtml.g.csutf-8
+tC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Curso\Listar.cshtml.g.csutf-8}
+rC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Index.cshtml.g.csutf-8
+tC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Home\Privacy.cshtml.g.csutf-8
+tC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\Error.cshtml.g.csutf-8Å
+vC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_Layout.cshtml.g.csutf-8î
+àC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Shared\_ValidationScriptsPartial.cshtml.g.csutf-8Ñ
+yC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Cadastrar.cshtml.g.csutf-8Ä
+uC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Logar.cshtml.g.csutf-8Å
+vC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\Usuario\Logout.cshtml.g.csutf-8
+tC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewImports.cshtml.g.csutf-8}
+rC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\Razor\Views\_ViewStart.cshtml.g.csutf-8É
+xC:\Users\wendr\OneDrive\Documentos\course\curso.mvc.web\obj\Debug\netcoreapp3.1\curso.mvc.web.RazorTargetAssemblyInfo.csutf-8
