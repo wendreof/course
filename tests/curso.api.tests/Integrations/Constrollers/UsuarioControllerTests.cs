@@ -76,24 +76,24 @@ namespace curso.api.tests.Integrations.Constrollers
             Assert.Equal(loginViewModelInput.Login, LoginViewModelOutput.Usuario.Login);
         }
 
-        [Fact]
-        public async Task LoginWithInvalidUserShouldReturnBadRequest()
-        {
-            //Arrange
-            var loginViewModelInput = new LoginViewModelInput
-            {
-                Login = "invalid",
-                Senha = "invalid"
-            };
+        //[Fact]
+        //public async Task LoginWithInvalidUserShouldReturnBadRequest()
+        //{
+        //    //Arrange
+        //    var loginViewModelInput = new LoginViewModelInput
+        //    {
+        //        Login = "invalid",
+        //        Senha = "invalid"
+        //    };
 
-            var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
+        //    var content = new StringContent(JsonConvert.SerializeObject(loginViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
 
-            //Act
-            var request = await _httpClient.PostAsync("api/v1/usuario/logar", content);
+        //    //Act
+        //    var request = await _httpClient.PostAsync("api/v1/usuario/logar", content);
 
-            //Assert
-            //Assert.False(request.IsSuccessStatusCode);
-        }
+        //    //Assert
+        //    //Assert.False(request.IsSuccessStatusCode);
+        //}
 
         public async Task InitializeAsync()
         {
