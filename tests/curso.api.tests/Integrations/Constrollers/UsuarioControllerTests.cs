@@ -35,12 +35,6 @@ namespace curso.api.tests.Integrations.Constrollers
                     .RuleFor(modelViewInput => modelViewInput.Login, faker => faker.Person.UserName)
                     .RuleFor(modelViewInput => modelViewInput.Email, faker => faker.Person.Email);
 
-            // RegistroViewModelInput = new RegistroViewModelInput
-            //{
-            //    Login = "wndro",
-            //    Senha = "wndro",
-            //    Email = "wendreo@world.com"
-            //};
 
             var content = new StringContent(JsonConvert.SerializeObject(RegistroViewModelInput), encoding: Encoding.UTF8, mediaType: "application/json");
 
@@ -104,6 +98,7 @@ namespace curso.api.tests.Integrations.Constrollers
         public async Task DisposeAsync()
         {
             _httpClient.Dispose();
+
         }
     }
 }
